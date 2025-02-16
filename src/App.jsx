@@ -1,19 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
-import Home from './components/Home.jsx';
-import ItemDetails from './components/DetailsPage.jsx'; // Import the new details page
-import './App.css';
-import Footer from './components/Footer.jsx';
+
+
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import DetailsPage from "./pages/DetailsPage";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import AddAuctionItem from "./pages/AddAuctionItem";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/details/:title/:startingBid/:details/:image" element={<ItemDetails />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+        <Route path="/add-item" element={<PrivateRoute><AddAuctionItem /></PrivateRoute>} />
+
+        <Route path="/details/:id" element={<DetailsPage />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

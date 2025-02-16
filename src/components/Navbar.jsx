@@ -1,43 +1,44 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { FaBars, FaTimes } from "react-icons/fa";
 
+const Navbar = () => {
+  const { user, logout } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
+  return (
+    <nav className="navbar">
+      <div className="nav-container">
+        <Link to="/" className="logo">AuctionApp</Link>
+        
+        {/* Hamburger Menu Button */}
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
 
-    return (
-        <div>
-            <nav className="navbar">
-                <h1 className="brand">Brand</h1>
-                <button onClick={() => setMenuOpen(true)} className="menu-button">
-                    <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-                <ul className="nav-links">
-                    <li><a href="#" className="nav-item">Home</a></li>
-                    <li><a href="#" className="nav-item">Top Items</a></li>
-                    <li><a href="#" className="nav-item">Bestsellers</a></li>
-                    <li><a href="#" className="nav-item">About</a></li>
-                </ul>
-            </nav>
+        {/* Navbar Links */}
+        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+          {user ? (
+            <>
+              <li><Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link></li>
+              <li><Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link></li>
+              <li><Link to="/add-item" onClick={() => setMenuOpen(false)}>Add Item</Link></li>
             
-            {menuOpen && (
-                <div className="mobile-menu">
-                    <div className="menu-content">
-                        <button onClick={() => setMenuOpen(false)} className="close-button">
-                            <svg className="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                        <ul>
-                            <li><a href="#" className="nav-item">Home</a></li>
-                            <li><a href="#" className="nav-item">Top Items</a></li>
-                            <li><a href="#" className="nav-item">Bestsellers</a></li>
-                            <li><a href="#" className="nav-item">About</a></li>
-                        </ul>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-}
+              <li><button onClick={() => { logout(); setMenuOpen(false); }}>Logout</button></li>
+            </>
+          ) : (
+            <>
+              <li><Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link></li>
+              <li><Link to="/signup" onClick={() => setMenuOpen(false)}>Sign Up</Link></li>
+              <li><Link to="/profile" onClick={() => setMenuOpen(false)}>profile</Link></li>
+            </>
+          )}
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

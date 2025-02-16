@@ -1,30 +1,16 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { useState } from "react";
 
-const images = ["watch1.jpg", "pexels-felixmittermeier-325845.jpg", "watch1.jpg"];
+const ImageSlider = ({ images }) => {
+  const [current, setCurrent] = useState(0);
 
-const ImageSlider = () => {
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+
   return (
-    <div className="slider-container">
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={30}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 3000 }}
-        className="custom-swiper"
-      >
-        {images.map((src, index) => (
-          <SwiperSlide key={index}>
-            <img src={src} alt={`Slide ${index + 1}`} className="slide-image" />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <div className="image-slider">
+      <button onClick={prevSlide}>‹</button>
+      <img src={images[current]} alt="Auction Item" />
+      <button onClick={nextSlide}>›</button>
     </div>
   );
 };
