@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import AddAuctionItem from "./pages/AddAuctionItem";
 import PrivateRoute from "./components/PrivateRoute";
+import './App.css'
 
 function App() {
   return (
