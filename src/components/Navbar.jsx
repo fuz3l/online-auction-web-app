@@ -8,9 +8,13 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar z-10 bg-red-600 left-0 right-0 fixed top-0 w-full">
       <div className="nav-container">
-        <Link to="/" className="logo">AuctionApp</Link>
+        <Link to="/" className="logo">
+        <img 
+        className="w-38"
+        src="./public/appLogo.png" alt="" />
+        </Link>
         
         {/* Hamburger Menu Button */}
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>

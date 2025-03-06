@@ -1,36 +1,17 @@
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 body{
   background: #FFFBF5;
 }
 .p{
   padding: 18px;
 }
-.footer{
-  background: #7743DB;
- position: static;
-  bottom: 0;
-  width: 100%;
- 
-    
-    color: white;
-    padding: 20px;
-    text-align: center;
 
- 
- 
-}
+
+  
 .navbar {
-    background: #7743DB;
+
     padding: 10px 20px;
     color: white;
  
@@ -45,12 +26,7 @@ body{
     align-items: center;
   }
   
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
-  }
+  
   
   .nav-links {
     list-style: none;
@@ -68,16 +44,18 @@ body{
     background: none;
     border: none;
  font-weight: 600;
+ border-radius: 20px;
     cursor: pointer;
     font-size: 1rem;
+    padding: 8px;
     transition: 0.2s ease
   }
   
   .nav-links a:hover, .nav-links button:hover {
     background: #F7EFE5;
-    padding: 8px;
-    color: #7743DB;
-    border-radius: 8px;
+    
+    color: red;
+
     transition: 0.2s ease
   }
   
@@ -118,7 +96,7 @@ body{
 
   .profile-container {
     max-width: 600px;
-    margin: 50px auto;
+    
     padding: 20px;
     border-radius: 10px;
     background: #f4f4f4;
@@ -547,4 +525,9 @@ textarea {
 
 .auth-btn:hover {
   background-color: #6633c3;
+}
+
+
+.manrope{
+  font-family: "Manrope", sans-serif;
 }

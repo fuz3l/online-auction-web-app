@@ -38,8 +38,12 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className="profile-container">
+      <div className="flex items-center justify-center">
+      <div className="profile-container mb-18 mt-24">
         <h2 className="text-xl font-bold mb-4">Profile</h2>
+        <div className="flex justify-center items-center">
+<img src="./public/user.png" className="w-40 h-40" alt="" />
+        </div>
         <div className="profile-info">
           <p><strong>Name:</strong> {user.displayName || "User"}</p>
           <p><strong>Email:</strong> {user.email}</p>
@@ -59,6 +63,7 @@ const Profile = () => {
             ))
           )}
         </div>
+      </div>
       </div>
       <Footer />
     </>

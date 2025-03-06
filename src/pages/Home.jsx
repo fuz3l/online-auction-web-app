@@ -30,9 +30,12 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <>
+    
       <Navbar />
-      <h2>Welcome to AuctionApp</h2>
+      <div className="home mt-24">
+      
+      <h2 className="m-3 text-center font-bold text-2xl">Welcome to AuctionApp</h2>
       <div className="items-grid" style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", padding: "20px" }}>
         {items.length > 0 ? (
           items.map((item) => (
@@ -73,7 +76,7 @@ const Home = () => {
   <h3 style={{ margin: "0 0 8px 0" }}>{item.title}</h3>
   <p style={{ margin: "0 0 8px 0" }}>Starting Bid: ₹{item.startingBid}</p>
   <button
-    className="btn-view"
+    className="bg-red-600 text-white px-3 w-full rounded-full py-2"
     style={{
       alignSelf: "center", // Centers the button horizontally
       marginTop: "auto", // Pushes the button to the bottom if space allows
@@ -90,7 +93,8 @@ const Home = () => {
         )}
       </div>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 
