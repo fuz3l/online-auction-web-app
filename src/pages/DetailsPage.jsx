@@ -88,7 +88,7 @@ const DetailsPage = () => {
     }
   };
 
-  if (loading) return <div className="flex justify-center items-center h-screen text-xl"><img src=".public/Animation - 1741088382645.gif" alt="" /></div>;
+  if (loading) return <div className="flex justify-center items-center h-screen text-xl"><img src="/Animation - 1741088382645.gif" alt="" /></div>;
   if (!item) return <div className="flex justify-center items-center h-screen text-xl">Item not found</div>;
 
   return (

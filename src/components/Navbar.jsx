@@ -13,7 +13,7 @@ const Navbar = () => {
         <Link to="/" className="logo">
         <img 
         className="w-38"
-        src="./public/appLogo.png" alt="" />
+        src="/appLogo.png" alt="" />
         </Link>
         
         {/* Hamburger Menu Button */}
