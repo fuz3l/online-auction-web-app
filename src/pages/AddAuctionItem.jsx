@@ -295,15 +295,17 @@ const AddAuctionItem = () => {
   };
 
   return (
-    <div className="add-auction-item">
-      <Navbar />
+    <>
+    <Navbar />
+    <div className="add-auction-item mt-24 h-screen">
+      
       <div className="add-item-div">
-        <h2>Add Auction Item</h2>
+        <h2 className="font-bold">Add Auction Item</h2>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="title-field">
             <label>Item Title</label>
-            <input type="text" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <input type="text" className="border border-red-300" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} required />
           </div>
 
           <div className="text-area-item">
@@ -311,11 +313,12 @@ const AddAuctionItem = () => {
             <div className="flex">
             <input
                 type="text"
+                className="border border-red-300"
                 placeholder="Enter a point"
                 value={currentPoint}
                 onChange={(e) => setCurrentPoint(e.target.value)}
               />
-              <button type="button" onClick={addPoint} className="add-point-btn">➕ Add</button>
+              <button type="button" onClick={addPoint} className=" ml-1 rounded-s-sm add-point-btn border border-red-300">➕ Add</button>
             </div>
             <ul className="point-list">
               {description.map((point, index) => (
@@ -327,28 +330,30 @@ const AddAuctionItem = () => {
             </ul>
           </div>
 
-          <div className="start-bid-field">
+          <div className="start-bid-field ">
             <label>Starting Bid</label>
-            <input type="number" placeholder="e.g. 500" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} required />
+            <input className="border border-red-300" type="number" placeholder="e.g. 500" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} required />
           </div>
 
-          <div className="auc-end-field">
+          <div className="auc-end-field  border-red-300">
             <label>Auction End Time</label>
-            <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
+            <input className="border border-red-300" type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
           </div>
 
           <div>
             <label>Item Image</label>
-            <input type="file" className="img-input" accept="image/*" onChange={handleFileChange} required />
+            <input type="file" className="img-input border border-red-300" accept="image/*" onChange={handleFileChange} required />
           </div>
 
-          <button className="btn-add-item" type="submit" disabled={uploading}>
+          <button className="btn-add-item bg-red-600 hover:bg-red-400" type="submit" disabled={uploading}>
             {uploading ? "Uploading..." : "Add Auction Item"}
           </button>
         </form>
       </div>
-      <Footer />
+    
     </div>
+    <Footer />
+    </>
   );
 };
 

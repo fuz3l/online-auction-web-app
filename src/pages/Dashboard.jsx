@@ -31,9 +31,11 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <Navbar />
-      <h2>Auction Items</h2>
+    <>
+        <Navbar />
+    <div className="dashboard mt-26">
+  
+      <h2 className="text-center font-bold text-2xl m-3">Dashboard </h2>
       <div className="items-grid" style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", padding: "20px" }}>
         {items.length > 0 ? (
           items.map((item) => (
@@ -47,8 +49,10 @@ const Dashboard = () => {
           <p>No auction items found.</p>
         )}
       </div>
-      <Footer />
+   
     </div>
+    <Footer />
+    </>
   );
 };
 

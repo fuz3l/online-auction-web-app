@@ -209,7 +209,7 @@ const Home = () => {
                   />
                 </div>
 
-                <h3 style={{ margin: "0 0 8px 0" }}>{item.title}</h3>
+                <h3 className="font-semibold text-xl" style={{ margin: "0 0 8px 0" }}>{item.title}</h3>
                 <p style={{ margin: "0 0 8px 0" }}>Starting Bid: ₹{item.startingBid}</p>
                 <button
                   className="bg-red-600 text-white px-3 w-full rounded-full py-2"

@@ -2,7 +2,7 @@
 
 
 body{
-  background: #FFFBF5;
+  background: white;
 }
 .p{
   padding: 18px;
@@ -75,7 +75,7 @@ body{
     .nav-links {
       display: none;
       flex-direction: column;
-      background: #7743DB;
+      
       position: absolute;
       top: 50px;
       right: 0;
@@ -120,10 +120,10 @@ body{
 .add-item-div {
   max-width: 500px;
   margin: 2rem auto;
-  background-color: #F7EFE5;
+  
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 /* Heading styling */
@@ -168,7 +168,7 @@ input[type="file"] {
   background: #F7EFE5;
   font-weight: 600;
   padding: 0.5rem;
-  border: 1.5px solid #C3ACD0;
+
   font-family: "Montserrat", serif;
   border-radius: 4px;
   box-sizing: border-box;
@@ -184,7 +184,7 @@ textarea {
 /* Button styling */
 .btn-add-item {
   width: 100%;
-  background-color: #7743DB; /* Indigo color */
+  
   color: #fff;
   padding: 0.75rem;
   border: none;
@@ -195,10 +195,7 @@ textarea {
   transition: background-color 0.3s ease;
 }
 
-/* Hover state */
-.btn-add-item:hover:not(:disabled) {
-  background-color: #6c1dfe;
-}
+
 
 /* Disabled state */
 .btn-add-item:disabled {

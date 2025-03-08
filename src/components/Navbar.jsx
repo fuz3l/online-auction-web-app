@@ -22,7 +22,7 @@ const Navbar = () => {
         </button>
 
         {/* Navbar Links */}
-        <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
+        <ul className={`nav-links mt-8 bg-red-600 ${menuOpen ? "open" : ""}`}>
           <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
           {user ? (
             <>

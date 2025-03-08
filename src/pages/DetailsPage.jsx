@@ -113,11 +113,11 @@ const DetailsPage = () => {
                 value={bidAmount}
                 onChange={(e) => setBidAmount(e.target.value)}
                 placeholder="Enter your bid"
-                className="w-full x p-3 border rounded-lg mb-4 focus:ring-2 focus:ring-blue-400"
+                className="w-full x p-3 border rounded-full mb-4 focus:ring-2 focus:ring-blue-400"
               />
               <button
                 onClick={placeBid}
-                className="w-full x1 bg-indigo-600 text-white py-3 rounded-lg text-lg hover:bg-indigo-700 transition duration-200"
+                className="w-full x1 bg-green-500 text-white py-3 rounded-lg text-lg hover:bg-green-700 transition duration-200"
               >
                 Place Bid
               </button>
