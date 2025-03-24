@@ -26,38 +26,41 @@ body{
     align-items: center;
   }
   
-  
-  
   .nav-links {
     list-style: none;
     display: flex;
-    gap: 15px;
-  }
-  
-  .nav-links li {
+    gap: 10px; /* Reduced gap */
+    align-items: center; /* Align items properly */
+    padding: 5px 10px;
+}
+
+.nav-links li {
     display: inline-block;
-  }
-  
-  .nav-links a, .nav-links button {
+}
+
+.nav-links a, .nav-links button {
     text-decoration: none;
     color: white;
     background: none;
     border: none;
- font-weight: 600;
- border-radius: 20px;
+    font-weight: 500; 
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1rem;
-    padding: 8px;
-    transition: 0.2s ease
-  }
-  
-  .nav-links a:hover, .nav-links button:hover {
-    background: #F7EFE5;
-    
-    color: red;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline-block; /* Ensure hover works */
+}
 
-    transition: 0.2s ease
-  }
+/* Fix: Ensure hover applies properly */
+.nav-links a:hover, 
+.nav-links button:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+    color: #f1f1f1; /* Slightly lighter text on hover */
+}
+
+
+  
   
   /* Responsive Menu */
   .menu-toggle {

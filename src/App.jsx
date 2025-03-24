@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import AddAuctionItem from "./pages/AddAuctionItem";
 import PrivateRoute from "./components/PrivateRoute";
+import Payment from "./pages/Payment";
 import './App.css'
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
         <Route path="/add-item" element={<PrivateRoute><AddAuctionItem /></PrivateRoute>} />
 
         <Route path="/details/:id" element={<DetailsPage />} />
+        <Route path="/payment/:id" element={<Payment />} />
+
       </Routes>
     </Router>
   );

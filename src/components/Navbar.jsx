@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaHome, FaUser, FaUserMinus  } from "react-icons/fa";
+import { RiDashboardFill } from "react-icons/ri";
+import { IoIosAddCircle } from "react-icons/io";
+
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -22,15 +25,15 @@ const Navbar = () => {
         </button>
 
         {/* Navbar Links */}
-        <ul className={`nav-links mt-8 bg-red-600 ${menuOpen ? "open" : ""}`}>
-          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+        <ul className={`nav-links mt-2 flex gap-4 bg-red-600 ${menuOpen ? "open" : ""}`}>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><FaHome></FaHome>Home</span></Link></li>
           {user ? (
             <>
-              <li><Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link></li>
-              <li><Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link></li>
-              <li><Link to="/add-item" onClick={() => setMenuOpen(false)}>Add Item</Link></li>
+              <li><Link to="/dashboard" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><RiDashboardFill></RiDashboardFill>Dashboard</span></Link></li>
+              <li><Link to="/profile" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><FaUser></FaUser>Profile</span></Link></li>
+              <li><Link to="/add-item" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><IoIosAddCircle></IoIosAddCircle>Add Item</span></Link></li>
             
-              <li><button onClick={() => { logout(); setMenuOpen(false); }}>Logout</button></li>
+              <li><button onClick={() => { logout(); setMenuOpen(false); }}><span className="flex gap-1 items-center"><FaUserMinus></FaUserMinus>logout</span></button></li>
             </>
           ) : (
             <>
