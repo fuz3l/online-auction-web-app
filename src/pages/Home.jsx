@@ -1,12 +1,30 @@
+
+
 // import { useEffect, useState } from "react";
 // import { collection, getDocs } from "firebase/firestore";
 // import { db } from "../services/firebase";
 // import { useNavigate } from "react-router-dom";
 // import Navbar from "../components/Navbar";
-// import Footer from '../components/Footer'
+// import Footer from "../components/Footer";
+// import Tilt from "react-parallax-tilt";
+// import { gsap } from "gsap";
+// import { useRef } from "react";
+
 // const Home = () => {
 //   const [items, setItems] = useState([]);
+//   const [imageLoaded, setImageLoaded] = useState({});
+//   const [loading, setLoading] = useState(true);
 //   const navigate = useNavigate();
+//   const bgRef = useRef(null);
+
+//   useEffect(() => {
+//     gsap.to(bgRef.current, {
+//       backgroundPosition: "200% 0",
+//       duration: 5,
+//       repeat: -1,
+//       ease: "linear"
+//     });
+//   }, []);
 
 //   useEffect(() => {
 //     const fetchAuctionItems = async () => {
@@ -16,84 +34,84 @@
 //           id: doc.id,
 //           ...doc.data(),
 //         }));
+
 //         setItems(itemsList);
-//       } catch (error) {
-//         console.error("Error fetching auction items:", error);
+//       } catch (err) {
+//         console.error("Error fetching auction items:", err);
+//       } finally {
+//         setLoading(false);
 //       }
 //     };
 
 //     fetchAuctionItems();
 //   }, []);
 
-//   const handleItemClick = (id) => {
-//     navigate(`/details/${id}`);
-//   };
+//   const handleItemClick = (id) => navigate(`/details/${id}`);
 
 //   return (
 //     <>
-    
 //       <Navbar />
-//       <div className="home mt-24">
-      
-//       <h2 className="m-3 text-center font-bold text-2xl">Welcome to AuctionApp</h2>
-//       <div className="items-grid" style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", padding: "20px" }}>
-//         {items.length > 0 ? (
-//           items.map((item) => (
-//             <div
-//   key={item.id}
-//   className="auction-item"
-//   style={{
-//     border: "1px solid #ddd",
-//     borderRadius: "8px",
-//     padding: "10px",
-//     cursor: "pointer",
-//     display: "flex",
-//     flexDirection: "column",
-//     justifyContent: "space-between",
-//   }}
-//   onClick={() => handleItemClick(item.id)}
-// >
-//   {/* Fixed-height image container */}
-//   <div
-//     style={{
-//       width: "100%",
-//       height: "150px",
-//       overflow: "hidden",
-//       borderRadius: "4px",
-//       marginBottom: "8px",
-//     }}
-//   >
-//     <img
-//       src={item.imageUrl}
-//       alt={item.title}
-//       loading="lazy"
-//       style={{
-//         width: "100%",
-//         height: "100%",
-//         objectFit: "cover",
-//       }}
-//     />
-//   </div>
-//   <h3 style={{ margin: "0 0 8px 0" }}>{item.title}</h3>
-//   <p style={{ margin: "0 0 8px 0" }}>Starting Bid: ₹{item.startingBid}</p>
-//   <button
-//     className="bg-red-600 text-white px-3 w-full rounded-full py-2"
-//     style={{
-//       alignSelf: "center", // Centers the button horizontally
-//       marginTop: "auto", // Pushes the button to the bottom if space allows
-//     }}
-//   >
-//     View Details
-//   </button>
-// </div>
+//       <div ref={bgRef} className="mt-24 px-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-[length:400%_400%]">
+//         <h2 className="text-center font-bold text-2xl mb-6 text-white drop-shadow-lg">
+//           Welcome to AuctionApp
+//         </h2>
 
+//         {loading ? (
+//           <p className="text-center text-white">Loading auction items...</p>
+//         ) : items.length > 0 ? (
+//           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-6">
+//             {items.map((item) => (
+//               <Tilt key={item.id} className="">
+//                 <div
+//                   className="border rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 cursor-pointer flex flex-col bg-white/20 backdrop-blur-lg h-[350px]"
+//                 >
+//                   {/* Image Wrapper */}
+//                   <div
+//                     className="w-full h-40 overflow-hidden rounded-md relative"
+//                     onClick={() => handleItemClick(item.id)}
+//                   >
+//                     {!imageLoaded[item.id] && (
+//                       <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-md"></div>
+//                     )}
+//                     <img
+//                       src={item.imageUrl}
+//                       alt={item.title}
+//                       loading="lazy"
+//                       onLoad={() =>
+//                         setImageLoaded((prev) => ({ ...prev, [item.id]: true }))
+//                       }
+//                       className={`w-full h-full object-cover rounded-md ${
+//                         imageLoaded[item.id] ? "opacity-100" : "opacity-0"
+//                       } transition-opacity duration-500`}
+//                     />
+//                   </div>
 
-//           ))
+//                   {/* Item Details */}
+//                   <div className="flex-grow flex flex-col justify-between mt-3">
+//                     <div>
+//                       <h3 className="font-semibold text-lg text-white">
+//                         {item.title}
+//                       </h3>
+//                       <p className="text-gray-200">Starting Bid: ₹{item.startingBid}</p>
+//                     </div>
+
+//                     {/* View Details Button */}
+//                     <button
+//                       className="bg-red-600 text-white px-3 w-full rounded-md py-2 mt-3"
+//                       onClick={() => handleItemClick(item.id)}
+//                     >
+//                       View Details
+//                     </button>
+//                   </div>
+//                 </div>
+//               </Tilt>
+//             ))}
+//           </div>
 //         ) : (
-//           <p>No auction items found.</p>
+//           <p className="text-center text-gray-200">No auction items found.</p>
 //         )}
-//       </div>
-//       <Footer />
+
+//         <Footer />
 //       </div>
 //     </>
 //   );
@@ -101,17 +119,58 @@
 
 // export default Home;
 
-import { useEffect, useState } from "react";
+
+
+import { useEffect, useState, useRef } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Tilt from "react-parallax-tilt";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Particles from "react-tsparticles";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
   const [items, setItems] = useState([]);
-  const [imageLoaded, setImageLoaded] = useState({}); // Track which images are loaded
+  const [imageLoaded, setImageLoaded] = useState({});
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    gsap.fromTo(
+      ".hero-title",
+      { opacity: 0, y: -50 },
+      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+    );
+    gsap.fromTo(
+      ".hero-button",
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 0.8, delay: 0.5, ease: "elastic.out(1, 0.5)" }
+    );
+  }, []);
+
+  useEffect(() => {
+    gsap.fromTo(
+      cardRefs.current,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: cardRefs.current,
+          start: "top 90%",
+        },
+      }
+    );
+  }, [items]);
 
   useEffect(() => {
     const fetchAuctionItems = async () => {
@@ -122,122 +181,89 @@ const Home = () => {
           ...doc.data(),
         }));
         setItems(itemsList);
-      } catch (error) {
-        console.error("Error fetching auction items:", error);
+      } catch (err) {
+        console.error("Error fetching auction items:", err);
+      } finally {
+        setLoading(false);
       }
     };
-
     fetchAuctionItems();
   }, []);
 
   const handleItemClick = (id) => {
+    if (!id) {
+      console.error("Error: Item ID is missing.");
+      return;
+    }
     navigate(`/details/${id}`);
   };
 
   return (
     <>
       <Navbar />
-      <div className="home mt-24">
-        <h2 className="m-3 text-center font-bold text-2xl">Welcome to AuctionApp</h2>
-        <div
-          className="items-grid"
-          style={{
-            display: "grid",
-            gap: "20px",
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-            padding: "20px",
-          }}
+      <Particles 
+        options={{ particles: { number: { value: 100 }, move: { speed: 1 }, color: { value: "#ffffff" } } }} 
+        className="absolute inset-0 z-0" 
+      />
+
+      {/* Hero Section */}
+      <div className="relative w-full h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center text-white text-center px-6 shadow-xl overflow-hidden">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-wide drop-shadow-lg hero-title">
+          WELCOME TO THE MARXBID AUCTION HOUSE.
+        </h1>
+        <p className="mt-3 text-lg md:text-xl opacity-80 hero-title">
+          BID HERE AND COLLECT VINTAGE AND COOL MEMORIES OF ITEMS.
+        </p>
+        <button
+          className="mt-6 bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition-all transform hover:scale-110 hero-button"
+          onClick={() => document.getElementById("featured-section").scrollIntoView({ behavior: "smooth" })}
         >
-          {items.length > 0 ? (
-            items.map((item) => (
-              <div
-                key={item.id}
-                className="auction-item"
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: "8px",
-                  padding: "10px",
-                  cursor: "pointer",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-                onClick={() => handleItemClick(item.id)}
-              >
-                {/* Image Wrapper for Fixed Height */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "150px",
-                    overflow: "hidden",
-                    borderRadius: "4px",
-                    marginBottom: "8px",
-                    position: "relative",
-                  }}
-                >
-                  {/* Show Skeleton Loader Until Image Loads */}
-                  {!imageLoaded[item.id] && (
-                    <div
-                      className="skeleton-loader"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        background: "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
-                        backgroundSize: "200% 100%",
-                        animation: "skeleton-loading 1.5s infinite",
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        borderRadius: "4px",
-                      }}
-                    ></div>
-                  )}
-
-                  {/* Actual Image with Lazy Loading */}
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    loading="lazy"
-                    onLoad={() => setImageLoaded((prev) => ({ ...prev, [item.id]: true }))}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      opacity: imageLoaded[item.id] ? 1 : 0,
-                      transition: "opacity 0.5s ease-in-out",
-                    }}
-                  />
-                </div>
-
-                <h3 className="font-semibold text-xl" style={{ margin: "0 0 8px 0" }}>{item.title}</h3>
-                <p style={{ margin: "0 0 8px 0" }}>Starting Bid: ₹{item.startingBid}</p>
-                <button
-                  className="bg-red-600 text-white px-3 w-full rounded-full py-2"
-                  style={{
-                    alignSelf: "center",
-                    marginTop: "auto",
-                  }}
-                >
-                  View Details
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>No auction items found.</p>
-          )}
-        </div>
-        <Footer />
+          Explore Auctions
+        </button>
       </div>
 
-      {/* Skeleton Loading Animation CSS */}
-      <style>
-        {`
-          @keyframes skeleton-loading {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-          }
-        `}
-      </style>
+      {/* Featured Auctions Section */}
+      <div id="featured-section" className="mt-10 px-6 py-12 bg-gray-900 text-white shadow-lg rounded-lg">
+        <h2 className="text-center text-3xl font-semibold mb-8">Featured Auctions</h2>
+        {loading ? (
+          <p className="text-center animate-pulse">Loading auction items...</p>
+        ) : items.length > 0 ? (
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {items.map((item, index) => (
+              <Tilt key={item.id} tiltMaxAngleX={10} tiltMaxAngleY={10} glareEnable glareMaxOpacity={0.3} glareColor="#ffffff">
+                <div
+                  ref={(el) => (cardRefs.current[index] = el)}
+                  className="border border-gray-700 rounded-lg p-5 shadow-lg bg-gray-800 transition-transform transform hover:scale-105 hover:border-blue-500 hover:ring-2 ring-blue-300 h-[420px] flex flex-col justify-between opacity-0"
+                >
+                  <div className="w-full h-48 overflow-hidden rounded-md relative">
+                    {!imageLoaded[item.id] && <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-md"></div>}
+                    <img
+                      src={item.imageUrl}
+                      alt={item.title}
+                      loading="lazy"
+                      onLoad={() => setImageLoaded((prev) => ({ ...prev, [item.id]: true }))}
+                      className={`w-full h-full object-cover rounded-md transition-opacity duration-500 ${imageLoaded[item.id] ? "opacity-100" : "opacity-0"}`}
+                    />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="font-semibold text-lg">{item.title}</h3>
+                    <p className="text-gray-400 text-sm">Starting Bid: ₹{item.startingBid}</p>
+                  </div>
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-md w-full hover:bg-red-600 transition-all"
+                    onClick={() => handleItemClick(item.id)}
+                  >
+                    View Details
+                  </button>
+                </div>
+              </Tilt>
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-gray-400">No auction items found.</p>
+        )}
+      </div>
+      <Footer />
     </>
   );
 };
