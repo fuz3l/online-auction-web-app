@@ -18,14 +18,14 @@ const Navbar = () => {
         className="w-38"
         src="/appLogo.png" alt="" />
         </Link>
-        
+      
         {/* Hamburger Menu Button */}
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
         {/* Navbar Links */}
-        <ul className={`nav-links mt-2 flex gap-4 bg-red-600 ${menuOpen ? "open" : ""}`}>
+        <ul className={`nav-links mt-4 flex gap-4 bg-red-600 ${menuOpen ? "open" : ""}`}>
           <li><Link to="/" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><FaHome></FaHome>Home</span></Link></li>
           {user ? (
             <>
@@ -34,6 +34,9 @@ const Navbar = () => {
               <li><Link to="/add-item" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><IoIosAddCircle></IoIosAddCircle>Add Item</span></Link></li>
             
               <li><button onClick={() => { logout(); setMenuOpen(false); }}><span className="flex gap-1 items-center"><FaUserMinus></FaUserMinus>logout</span></button></li>
+          <div className="p-2 block md:hidden w-full">  <input className="  w-full p-3 rounded-full text-red-500 bg-white" placeholder="search items"></input></div>
+     
+              
             </>
           ) : (
             <>
@@ -43,7 +46,7 @@ const Navbar = () => {
             </>
           )}
         </ul>
-      </div>
+     </div>
     </nav>
   );
 };

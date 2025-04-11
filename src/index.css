@@ -162,7 +162,7 @@ label {
 }
 
 /* Input and textarea common styling */
-input[type="text"],
+/* input[type="text"],
 input[type="number"],
 input[type="datetime-local"],
 textarea,
@@ -175,7 +175,7 @@ input[type="file"] {
   font-family: "Montserrat", serif;
   border-radius: 4px;
   box-sizing: border-box;
-}
+} */
 
 
 /* Textarea specific styling */
@@ -393,7 +393,7 @@ textarea {
 /* Container for the entire login page */
 .login-container {
   min-height: 100vh;
-  background-color: #f4f6f8;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -405,7 +405,7 @@ textarea {
 .login-card {
   background-color: #fff;
   padding: 40px;
-  border-radius: 8px;
+ 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
@@ -431,32 +431,28 @@ textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
-.login-input:focus {
-  border-color: #7743db;
-}
+
 
 /* Button styling */
 .login-btn {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 4px;
-  background-color: #7743db;
+
+
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.login-btn:hover {
-  background-color: #6633c3;
-}
+
 
 /* Container covering full viewport */
 .auth-container {

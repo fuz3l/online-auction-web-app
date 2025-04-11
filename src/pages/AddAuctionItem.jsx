@@ -571,20 +571,39 @@ const AddAuctionItem = () => {
     setDescription(description.filter((_, i) => i !== index));
   };
 
+  // const uploadImageToAppwrite = async (file) => {
+  //   try {
+  //     const uploadedFile = await storage.createFile(
+  //       "67ac628400330cb1f6c9",
+  //       ID.unique(),
+  //       file,
+  //       [Permission.read(Role.any()), Permission.write(Role.any())]
+  //     );
+  //     return storage.getFilePreview("67ac628400330cb1f6c9", uploadedFile.$id);
+  //   } catch (err) {
+  //     console.error("Error uploading image:", err);
+  //     return null;
+  //   }
+  // };
   const uploadImageToAppwrite = async (file) => {
     try {
       const uploadedFile = await storage.createFile(
-        "67ac628400330cb1f6c9",
+        "67ac628400330cb1f6c9", // bucket ID
         ID.unique(),
         file,
         [Permission.read(Role.any()), Permission.write(Role.any())]
       );
-      return storage.getFilePreview("67ac628400330cb1f6c9", uploadedFile.$id);
+  
+      const viewUrl = `https://cloud.appwrite.io/v1/storage/buckets/67ac628400330cb1f6c9/files/${uploadedFile.$id}/view?project=67ac626f00217bbaa36b`;
+      return viewUrl;
+  
     } catch (err) {
       console.error("Error uploading image:", err);
       return null;
     }
   };
+  
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -638,45 +657,45 @@ const AddAuctionItem = () => {
   return (
     <>
       <Navbar />
-      <div className="add-auction-item mt-24 h-screen">
+      <div className="add-auction-item mt-20 mb-12 h-screen">
         <div className="add-item-div">
           <h2 className="font-bold">Add Auction Item</h2>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <form onSubmit={handleSubmit}>
             <div className="title-field">
               <label>Item Title</label>
-              <input type="text" className="border border-red-300" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+              <input type="text" className="border text-red-500 login-input rounded-full  border-red-300" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} required />
             </div>
 
             <div className="text-area-item">
               <label>Description (Point-wise)</label>
               <div className="flex">
-                <input type="text" className="border border-red-300" placeholder="Enter a point" value={currentPoint} onChange={(e) => setCurrentPoint(e.target.value)} />
-                <button type="button" onClick={addPoint} className="ml-1 rounded-s-sm add-point-btn border border-red-300">➕ Add</button>
+                <input type="text" className="border text-red-500 login-input rounded-bl-full rounded-tl-full border-red-300" placeholder="Enter a point" value={currentPoint} onChange={(e) => setCurrentPoint(e.target.value)} />
+                <button type="button" onClick={addPoint} className="ml-1 px-2 rounded-s-sm add-point-btn border text-white bg-red-500 rounded-full border-red-300">➕ </button>
               </div>
               <ul className="point-list">
                 {description.map((point, index) => (
-                  <li key={index} className="point-item">{point} <button type="button" onClick={() => removePoint(index)} className="remove-btn">❌</button></li>
+                  <li key={index} className="point-item text-red-500 login-input rounded-full">{point} <button type="button" onClick={() => removePoint(index)} className="remove-btn ">❌</button></li>
                 ))}
               </ul>
             </div>
 
             <div className="start-bid-field">
               <label>Starting Bid</label>
-              <input className="border border-red-300" type="number" placeholder="e.g. 500" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} required />
+              <input className="border border-red-300 text-red-500 login-input rounded-full" type="number" placeholder="e.g. 500" value={startingBid} onChange={(e) => setStartingBid(e.target.value)} required />
             </div>
 
             <div className="auc-end-field border-red-300">
               <label>Auction End Time</label>
-              <input className="border border-red-300" type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
+              <input className="border text-red-500 login-input rounded-full border-red-300" type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} required />
             </div>
 
             <div>
               <label>Item Image</label>
-              <input type="file" className="img-input border border-red-300" accept="image/*" onChange={handleFileChange} required />
+              <input type="file" className="img-input border text-red-500 login-input rounded-full border-red-300" accept="image/*" onChange={handleFileChange} required />
             </div>
 
-            <button className="btn-add-item bg-red-600 hover:bg-red-400" type="submit" disabled={uploading}>{uploading ? "Uploading..." : "Add Auction Item"}</button>
+            <button className="text-white login-input rounded-full bg-red-600 hover:bg-red-400" type="submit" disabled={uploading}>{uploading ? "Uploading..." : "Add Auction Item"}</button>
           </form>
         </div>
       </div>

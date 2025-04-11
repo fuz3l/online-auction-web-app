@@ -1,40 +1,4 @@
-// import { useState } from "react";
-// import { useAuth } from "../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
-// import Footer from "../components/Footer";
 
-// const SignUp = () => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const { signup } = useAuth();
-//   const navigate = useNavigate();
-
-//   const handleSignUp = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await signup(email, password);
-//       navigate("/dashboard");
-//     } catch (error) {
-//       console.error("Signup Error:", error.message);
-//     }
-//   };
-
-//   return (
-//     <div className="auth-container">
-//       <div className="auth-card">
-//       <h2>Sign Up</h2>
-//       <form className="auth-form" onSubmit={handleSignUp}>
-//         <input className="login-input" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
-//         <input className="login-input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-//         <button className="login-btn" type="submit">Sign Up</button>
-//       </form>
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default SignUp;
 
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
@@ -84,15 +48,15 @@ const SignUp = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container ">
       <div className="auth-card">
         <h2>Sign Up</h2>
         <form className="auth-form" onSubmit={handleSignUp}>
-          <input className="login-input" type="text" placeholder="Full Name" onChange={(e) => setFullName(e.target.value)} required />
-          <input className="login-input" type="tel" placeholder="Mobile Number" onChange={(e) => setMobileNumber(e.target.value)} required />
-          <input className="login-input" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
-          <input className="login-input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-          <button className="login-btn" type="submit">Sign Up</button>
+          <input className="text-red-500 login-input rounded-full" type="text" placeholder="Full Name" onChange={(e) => setFullName(e.target.value)} required />
+          <input className="text-red-500 login-input rounded-full" type="tel" placeholder="Mobile Number" onChange={(e) => setMobileNumber(e.target.value)} required />
+          <input className="text-red-500 login-input rounded-full" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
+          <input className="text-red-500 login-input rounded-full" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+          <button className="login-btn  bg-red-600 hover:bg-red-700 rounded-full" type="submit">Sign Up</button>
         </form>
       </div>
       <Footer />

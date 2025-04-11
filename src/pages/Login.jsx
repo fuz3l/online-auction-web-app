@@ -22,16 +22,17 @@ const Login = () => {
 
   return (
     <>
-    <div className="login-container">
-      <div className="login-card">
-        <h2>Login</h2>
+    <div className="login-container bg-red-200">
+   
+      <div className="login-card rounded-2xl">
+           <h2>Login</h2>
         <form onSubmit={handleSubmit} className="login-form">
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="login-input"
+            className="login-input text-red-500 rounded-full"
             required
           />
           <input
@@ -39,10 +40,10 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="login-input"
+            className="text-red-500 login-input rounded-full"
             required
           />
-          <button type="submit" className="login-btn">
+          <button type="submit" className="login-btn bg-red-600 hover:bg-red-700 rounded-full">
             Login
           </button>
         </form>

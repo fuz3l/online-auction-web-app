@@ -25,8 +25,8 @@ function App() {
         <Route path="/add-item" element={<PrivateRoute><AddAuctionItem /></PrivateRoute>} />
 
         <Route path="/details/:id" element={<DetailsPage />} />
-        <Route path="/payment/:id" element={<Payment />} />
 
+        <Route path="/payments/:id" element={<Payment />} />
       </Routes>
     </Router>
   );

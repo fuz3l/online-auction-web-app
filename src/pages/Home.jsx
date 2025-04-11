@@ -1,126 +1,4 @@
 
-
-// import { useEffect, useState } from "react";
-// import { collection, getDocs } from "firebase/firestore";
-// import { db } from "../services/firebase";
-// import { useNavigate } from "react-router-dom";
-// import Navbar from "../components/Navbar";
-// import Footer from "../components/Footer";
-// import Tilt from "react-parallax-tilt";
-// import { gsap } from "gsap";
-// import { useRef } from "react";
-
-// const Home = () => {
-//   const [items, setItems] = useState([]);
-//   const [imageLoaded, setImageLoaded] = useState({});
-//   const [loading, setLoading] = useState(true);
-//   const navigate = useNavigate();
-//   const bgRef = useRef(null);
-
-//   useEffect(() => {
-//     gsap.to(bgRef.current, {
-//       backgroundPosition: "200% 0",
-//       duration: 5,
-//       repeat: -1,
-//       ease: "linear"
-//     });
-//   }, []);
-
-//   useEffect(() => {
-//     const fetchAuctionItems = async () => {
-//       try {
-//         const querySnapshot = await getDocs(collection(db, "auction_items"));
-//         const itemsList = querySnapshot.docs.map((doc) => ({
-//           id: doc.id,
-//           ...doc.data(),
-//         }));
-
-//         setItems(itemsList);
-//       } catch (err) {
-//         console.error("Error fetching auction items:", err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchAuctionItems();
-//   }, []);
-
-//   const handleItemClick = (id) => navigate(`/details/${id}`);
-
-//   return (
-//     <>
-//       <Navbar />
-//       <div ref={bgRef} className="mt-24 px-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-[length:400%_400%]">
-//         <h2 className="text-center font-bold text-2xl mb-6 text-white drop-shadow-lg">
-//           Welcome to AuctionApp
-//         </h2>
-
-//         {loading ? (
-//           <p className="text-center text-white">Loading auction items...</p>
-//         ) : items.length > 0 ? (
-//           <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-6">
-//             {items.map((item) => (
-//               <Tilt key={item.id} className="">
-//                 <div
-//                   className="border rounded-lg p-4 shadow-md hover:shadow-lg transition duration-300 cursor-pointer flex flex-col bg-white/20 backdrop-blur-lg h-[350px]"
-//                 >
-//                   {/* Image Wrapper */}
-//                   <div
-//                     className="w-full h-40 overflow-hidden rounded-md relative"
-//                     onClick={() => handleItemClick(item.id)}
-//                   >
-//                     {!imageLoaded[item.id] && (
-//                       <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-md"></div>
-//                     )}
-//                     <img
-//                       src={item.imageUrl}
-//                       alt={item.title}
-//                       loading="lazy"
-//                       onLoad={() =>
-//                         setImageLoaded((prev) => ({ ...prev, [item.id]: true }))
-//                       }
-//                       className={`w-full h-full object-cover rounded-md ${
-//                         imageLoaded[item.id] ? "opacity-100" : "opacity-0"
-//                       } transition-opacity duration-500`}
-//                     />
-//                   </div>
-
-//                   {/* Item Details */}
-//                   <div className="flex-grow flex flex-col justify-between mt-3">
-//                     <div>
-//                       <h3 className="font-semibold text-lg text-white">
-//                         {item.title}
-//                       </h3>
-//                       <p className="text-gray-200">Starting Bid: ₹{item.startingBid}</p>
-//                     </div>
-
-//                     {/* View Details Button */}
-//                     <button
-//                       className="bg-red-600 text-white px-3 w-full rounded-md py-2 mt-3"
-//                       onClick={() => handleItemClick(item.id)}
-//                     >
-//                       View Details
-//                     </button>
-//                   </div>
-//                 </div>
-//               </Tilt>
-//             ))}
-//           </div>
-//         ) : (
-//           <p className="text-center text-gray-200">No auction items found.</p>
-//         )}
-
-//         <Footer />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Home;
-
-
-
 import { useEffect, useState, useRef } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebase";
@@ -207,13 +85,15 @@ const Home = () => {
       />
 
       {/* Hero Section */}
-      <div className="relative w-full h-screen bg-gradient-to-br from-gray-900 to-black flex flex-col items-center justify-center text-white text-center px-6 shadow-xl overflow-hidden">
+      <div className="relative w-full h-screen bg-gradient-to-br from-black to-red-900 flex flex-col items-center justify-center text-white text-center px-6 shadow-xl overflow-hidden">
         <h1 className="text-5xl md:text-7xl font-bold tracking-wide drop-shadow-lg hero-title">
           WELCOME TO THE MARXBID AUCTION HOUSE.
         </h1>
         <p className="mt-3 text-lg md:text-xl opacity-80 hero-title">
           BID HERE AND COLLECT VINTAGE AND COOL MEMORIES OF ITEMS.
         </p>
+  
+
         <button
           className="mt-6 bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition-all transform hover:scale-110 hero-button"
           onClick={() => document.getElementById("featured-section").scrollIntoView({ behavior: "smooth" })}
