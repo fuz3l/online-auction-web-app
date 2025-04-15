@@ -9,6 +9,7 @@ import Tilt from "react-parallax-tilt";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Particles from "react-tsparticles";
+import HelpChatbot from "../components/HelpChatbot";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,7 +94,7 @@ const Home = () => {
           BID HERE AND COLLECT VINTAGE AND COOL MEMORIES OF ITEMS.
         </p>
   
-
+<HelpChatbot />
         <button
           className="mt-6 bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition-all transform hover:scale-110 hero-button"
           onClick={() => document.getElementById("featured-section").scrollIntoView({ behavior: "smooth" })}

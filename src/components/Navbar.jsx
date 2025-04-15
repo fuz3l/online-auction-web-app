@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { FaBars, FaTimes, FaHome, FaUser, FaUserMinus  } from "react-icons/fa";
+import { FaBars, FaTimes, FaHome, FaUser, FaUserMinus, FaQuestionCircle  } from "react-icons/fa";
 import { RiDashboardFill } from "react-icons/ri";
 import { IoIosAddCircle } from "react-icons/io";
 
@@ -32,7 +32,7 @@ const Navbar = () => {
               <li><Link to="/dashboard" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><RiDashboardFill></RiDashboardFill>Dashboard</span></Link></li>
               <li><Link to="/profile" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><FaUser></FaUser>Profile</span></Link></li>
               <li><Link to="/add-item" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><IoIosAddCircle></IoIosAddCircle>Add Item</span></Link></li>
-            
+              <li><Link to="/about-us" onClick={() => setMenuOpen(false)}><span className="flex gap-1 items-center"><FaQuestionCircle></FaQuestionCircle>About Us</span></Link></li>
               <li><button onClick={() => { logout(); setMenuOpen(false); }}><span className="flex gap-1 items-center"><FaUserMinus></FaUserMinus>logout</span></button></li>
           <div className="p-2 block md:hidden w-full">  <input className="  w-full p-3 rounded-full text-red-500 bg-white" placeholder="search items"></input></div>
      

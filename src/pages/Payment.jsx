@@ -297,7 +297,9 @@ const PaymentPage = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [upiId, setUpiId] = useState("");
   const amount = location.state?.amount || 0;
+
 
   const handlePayment = (e) => {
     e.preventDefault();
@@ -313,6 +315,8 @@ const PaymentPage = () => {
     }
   };
 
+
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-3xl shadow-xl w-full max-w-lg transition-all duration-500 ease-in-out">
@@ -359,6 +363,7 @@ const PaymentPage = () => {
                   type="text"
                   placeholder="1234 5678 9012 3456"
                   maxLength="19"
+                  minLength="12"
                   value={cardNumber}
                   onChange={(e) => setCardNumber(e.target.value)}
                   className="w-full pl-10 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -402,13 +407,31 @@ const PaymentPage = () => {
               </div>
             </div>
 
+<div>
+  <p className="text-blue-600 m-1.5 font-semibold text-center">Or Pay wit UPI</p>
+<div>
+              <label className="block font-medium text-gray-700 mb-1">
+        UPI ID
+              </label>
+              <div className="relative">
+                <FaCreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="yournumber@bankname"
+                  maxLength="19"
+                  minLength="12"
+                
+                  className="w-full pl-10 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+</div>
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-3 rounded-xl text-lg font-semibold hover:bg-blue-700 transition duration-200"
             >
               Pay ₹{amount}
             </button>
-
             <p className="text-sm text-gray-500 text-center mt-3">
               Your payment is securely processed using 256-bit encryption.
             </p>
