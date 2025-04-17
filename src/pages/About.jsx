@@ -36,6 +36,14 @@ function About() {
         linkText="LinkedIn"
       />
 
+<Member
+        name="Shahid Mansuri"
+        intro="Shahid is a BCA Student from Silver Oak University."
+        occupation="UI/UX"
+        link="https://www.linkedin.com/in/shahid-mansuri-74386227a/"
+        linkText="LinkedIn"
+      />
+      
       <Member
         name="Sameer Baloch"
         intro="Sameer is a BCA Student from Silver Oak University."
@@ -44,13 +52,7 @@ function About() {
         linkText="Linkedin"
       />
 
-      <Member
-        name="Shahid Mansuri"
-        intro="Shahid is a BCA Student from Silver Oak University."
-        occupation="UI/UX"
-        link="https://www.linkedin.com/in/shahid-mansuri-74386227a/"
-        linkText="LinkedIn"
-      />
+   
     </div>
   </div>
 </div>
